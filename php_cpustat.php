@@ -1,25 +1,33 @@
 <?php
 
-$timerange = $_GET['timerange'];
+$timerange = null;
+$inforlevel = 's';
+//if you need to use this in brower or want to adjust timerange, just set value like $_GET or number .
+//$timerange = $_GET['timerange'];
+//$timerange = 5;
+//$inforlevel = 's'
 if ($timerange) {
-    echopcpu($timerange);
+    echopcpu($inforlevel, $timerange);
 } else {
     echopcpu();
 }
 
-function echopcpu($timerange = 1)
+function echopcpu($inforlevel = 's', $timerange = 1)
 {
     //echo $timerange;
-    $procstatarray_s1 = getprocstat();
+    $procstat_t1 = getprocstat();
     sleep($timerange);
-    $procstatarray_s2 = getprocstat();
+    $procstat_t2 = getprocstat();
     $nproc = getnproc();
     for ($cpuid = 0; $cpuid < $nproc; ++$cpuid) {
-        $totalCpuTime[$cpuid] = $procstatarray_s2[$cpuid]['total'] - $procstatarray_s1[$cpuid]['total'];
-        $idleCpuTime[$cpuid] = $procstatarray_s2[$cpuid]['idle'] - $procstatarray_s1[$cpuid]['idle'];
-        $pcpu[$cpuid] = 100 * ($totalCpuTime[$cpuid] - $idleCpuTime[$cpuid]) / $totalCpuTime[$cpuid];
-        $pcpu[$cpuid] = round($pcpu[$cpuid], 2);
-        echo 'cpu'.$cpuid.' '.$pcpu[$cpuid].'%';
+        foreach ($procstat_t2[$cpuid] as $column => $value) {
+            $diffstat[$cpuid][$column] = $procstat_t2[$cpuid][$column] - $procstat_t1[$cpuid][$column];
+        }
+        $diffstat[$cpuid]['total'] = array_sum($procstat_t2[$cpuid]) - array_sum($procstat_t1[$cpuid]);
+        $pcpu = 100 * ($diffstat[$cpuid]['total'] - $diffstat[$cpuid]['idle']) / $diffstat[$cpuid]['total'];
+        var_dump($pcpu);
+        $pcpu = round($pcpu, 2);
+        echo 'cpu'.$cpuid."\t".$pcpu.'%';
         echo "\n";
     }
 }
@@ -53,10 +61,12 @@ function getprocstat()
                 'guest' => (int) $procstat_percpu[10],
                 'guest_nice' => (int) $procstat_percpu[11],
                 );
+/*
         $tmpsum = array_sum($tmp[$cpuid]);
         $time = time();
         $tmp[$cpuid]['total'] = $tmpsum;
         $tmp[$cpuid]['time'] = $time;
+*/
     }
 
     return $tmp;
