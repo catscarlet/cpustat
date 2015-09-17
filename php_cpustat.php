@@ -1,6 +1,5 @@
 <?php
 
-
 $procstatarray_s1 = getprocstat();
 
 foreach ($procstatarray_s1 as $cpuid => $procstat_s1) {
@@ -26,14 +25,10 @@ for ($cpuid = 0; $cpuid < count($procstatarray_s1); ++$cpuid) {
     echo "\n";
 }
 
-//function calculatepcpu(){}
-
-
 function getprocstat()
 {
     exec('nproc', $nproc);
     $nproc = $nproc[0];
-    //$nproc = 1;
     $time=time();
     exec('cat /proc/stat|grep "^cpu"|tail -n '.$nproc, $procstat);
     foreach ($procstat as $k => $v) {
@@ -53,7 +48,5 @@ function getprocstat()
                 'guest_nice' => (int) $procstat_percpu[11],
                );
     }
-    //echo $k;
-    //var_dump($tmp);
     return $tmp;
 }
