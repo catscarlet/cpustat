@@ -34,10 +34,12 @@ function getprocstat()
     exec('nproc', $nproc);
     $nproc = $nproc[0];
     //$nproc = 1;
+    $time=time();
     exec('cat /proc/stat|grep "^cpu"|tail -n '.$nproc, $procstat);
     foreach ($procstat as $k => $v) {
         preg_match('/cpu(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)/', $v, $procstat_percpu);
         $tmp[$k] = array(
+                'time' => (int) $time,
                 //'cpu' => (int) $procstat_percpu[1],
                 'user' => (int) $procstat_percpu[2],
                 'nice' => (int) $procstat_percpu[3],
