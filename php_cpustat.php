@@ -20,7 +20,7 @@ for ($cpuid = 0; $cpuid < count($procstatarray_s1); ++$cpuid) {
     $totalCpuTime[$cpuid] = $totalCpuTime_s2[$cpuid] - $totalCpuTime_s1[$cpuid];
     $idleCpuTime[$cpuid] = $idleCpuTime_s2[$cpuid] - $idleCpuTime_s1[$cpuid];
     $pcpu[$cpuid] = 100 * ($totalCpuTime[$cpuid] - $idleCpuTime[$cpuid]) / $totalCpuTime[$cpuid];
-    $pcpu[$cpuid] = round($pcpu[$cpuid],2);
+    $pcpu[$cpuid] = round($pcpu[$cpuid], 2);
     echo $pcpu[$cpuid].'%';
     echo "\n";
 }
@@ -29,12 +29,12 @@ function getprocstat()
 {
     exec('nproc', $nproc);
     $nproc = $nproc[0];
-    $time=time();
+    $time = time();
     exec('cat /proc/stat|grep "^cpu"|tail -n '.$nproc, $procstat);
     foreach ($procstat as $k => $v) {
         preg_match('/cpu(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)/', $v, $procstat_percpu);
         $tmp[$k] = array(
-                'time' => (int) $time,
+                //'time' => (int) $time,
                 //'cpu' => (int) $procstat_percpu[1],
                 'user' => (int) $procstat_percpu[2],
                 'nice' => (int) $procstat_percpu[3],
@@ -48,5 +48,6 @@ function getprocstat()
                 'guest_nice' => (int) $procstat_percpu[11],
                );
     }
+
     return $tmp;
 }
