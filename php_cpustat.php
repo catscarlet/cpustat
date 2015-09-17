@@ -1,20 +1,27 @@
 <?php
 
-$procstatarray_s1 = getprocstat();
+$timerange = $_GET['timerange'];
+if ($timerange) {
+    echopcpu($timerange);
+} else {
+    echopcpu();
+}
 
-sleep(1);
-
-$procstatarray_s2 = getprocstat();
-
-$nproc = getnproc();
-
-for ($cpuid = 0; $cpuid < $nproc; ++$cpuid) {
-    $totalCpuTime[$cpuid] = $procstatarray_s2[$cpuid]['total'] - $procstatarray_s1[$cpuid]['total'];
-    $idleCpuTime[$cpuid] = $procstatarray_s2[$cpuid]['idle'] - $procstatarray_s1[$cpuid]['idle'];
-    $pcpu[$cpuid] = 100 * ($totalCpuTime[$cpuid] - $idleCpuTime[$cpuid]) / $totalCpuTime[$cpuid];
-    $pcpu[$cpuid] = round($pcpu[$cpuid], 2);
-    echo 'cpu'.$cpuid.' '.$pcpu[$cpuid].'%';
-    echo "\n";
+function echopcpu($timerange = 1)
+{
+    //echo $timerange;
+    $procstatarray_s1 = getprocstat();
+    sleep($timerange);
+    $procstatarray_s2 = getprocstat();
+    $nproc = getnproc();
+    for ($cpuid = 0; $cpuid < $nproc; ++$cpuid) {
+        $totalCpuTime[$cpuid] = $procstatarray_s2[$cpuid]['total'] - $procstatarray_s1[$cpuid]['total'];
+        $idleCpuTime[$cpuid] = $procstatarray_s2[$cpuid]['idle'] - $procstatarray_s1[$cpuid]['idle'];
+        $pcpu[$cpuid] = 100 * ($totalCpuTime[$cpuid] - $idleCpuTime[$cpuid]) / $totalCpuTime[$cpuid];
+        $pcpu[$cpuid] = round($pcpu[$cpuid], 2);
+        echo 'cpu'.$cpuid.' '.$pcpu[$cpuid].'%';
+        echo "\n";
+    }
 }
 
 function getnproc()
@@ -28,6 +35,7 @@ function getnproc()
 
 function getprocstat()
 {
+    //get the information of processing units by cat /proc/stat
     $nproc = getnproc();
 
     exec('cat /proc/stat|grep "^cpu"|tail -n '.$nproc, $procstat);
