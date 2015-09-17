@@ -20,14 +20,12 @@ function echopcpu($inforlevel = 's', $timerange = 1)
     $procstat_t2 = getprocstat();
     $nproc = getnproc();
     for ($cpuid = 0; $cpuid < $nproc; ++$cpuid) {
-        foreach ($procstat_t2[$cpuid] as $column => $value) {
-            $diffstat[$cpuid][$column] = $procstat_t2[$cpuid][$column] - $procstat_t1[$cpuid][$column];
-        }
         $diffstat[$cpuid]['total'] = array_sum($procstat_t2[$cpuid]) - array_sum($procstat_t1[$cpuid]);
-        $pcpu = 100 * ($diffstat[$cpuid]['total'] - $diffstat[$cpuid]['idle']) / $diffstat[$cpuid]['total'];
-        var_dump($pcpu);
-        $pcpu = round($pcpu, 2);
-        echo 'cpu'.$cpuid."\t".$pcpu.'%';
+        $diffstat[$cpuid] = subtractarray($procstat_t1[$cpuid], $procstat_t2[$cpuid]);
+        $pcpu[$cpuid] = 100 * ($diffstat[$cpuid]['total'] - $diffstat[$cpuid]['idle']) / $diffstat[$cpuid]['total'];
+        //var_dump($pcpu);
+        $pcpu[$cpuid] = round($pcpu[$cpuid], 2);
+        echo 'cpu'.$cpuid."\t".$pcpu[$cpuid].'%';
         echo "\n";
     }
 }
@@ -70,4 +68,16 @@ function getprocstat()
     }
 
     return $tmp;
+}
+
+function subtractarray($array1, $array2)
+{
+    if (count($array1) != count($array2)) {
+        die('something happened');
+    }
+    foreach ($array2 as $key => $value) {
+        $difference[$key] = $array2[$key] - $array1[$key];
+    }
+
+    return $difference;
 }
