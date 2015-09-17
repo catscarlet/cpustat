@@ -21,7 +21,7 @@ for ($cpuid = 0; $cpuid < count($procstatarray_s1); ++$cpuid) {
     $totalCpuTime[$cpuid] = $totalCpuTime_s2[$cpuid] - $totalCpuTime_s1[$cpuid];
     $idleCpuTime[$cpuid] = $idleCpuTime_s2[$cpuid] - $idleCpuTime_s1[$cpuid];
     $pcpu[$cpuid] = 100 * ($totalCpuTime[$cpuid] - $idleCpuTime[$cpuid]) / $totalCpuTime[$cpuid];
-    $pcpu[$cpuid] = (int)$pcpu[$cpuid];
+    $pcpu[$cpuid] = round($pcpu[$cpuid],2);
     echo $pcpu[$cpuid].'%';
     echo "\n";
 }
