@@ -17,7 +17,7 @@ foreach ($procstatarray_s2 as $cpuid => $procstat_s2) {
     $idleCpuTime_s2[$cpuid] = $procstat_s2['idle'];
 }
 
-for ($cpuid = 0; $cpuid < 2; ++$cpuid) {
+for ($cpuid = 0; $cpuid < count($procstatarray_s1); ++$cpuid) {
     $totalCpuTime[$cpuid] = $totalCpuTime_s2[$cpuid] - $totalCpuTime_s1[$cpuid];
     $idleCpuTime[$cpuid] = $idleCpuTime_s2[$cpuid] - $idleCpuTime_s1[$cpuid];
     $pcpu[$cpuid] = 100 * ($totalCpuTime[$cpuid] - $idleCpuTime[$cpuid]) / $totalCpuTime[$cpuid];
