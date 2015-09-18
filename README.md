@@ -1,4 +1,6 @@
 # cpustat
+Click here for Chinese README.[中文文档](https://github.com/catscarlet/cpustat/blob/master/README_zh-cn.md)
+
 A very simple cpu usage percentages monitor tools .simply calculate and output text of cpu usage percentages ,two version writing by shell/php .
 
 Nowadays there are a lot of tools can statistic cpu performance .They are very powerful because they can record cpu performance and save the log , or they have a good readability with a GUI ,such as sar and nmon.
@@ -13,9 +15,6 @@ So I decide to writing a tool to make myself satisfied.
 
 Now it is just an idea and I'm just workinig on it .
 
-
-
 Note :
-
 1. This project use 'cat /proc/stat' to collect information ,using regex , so only work with Linux 2.6.24 and newer version because of 9 columns.See in:[http://www.linuxhowtos.org/System/procstat.htm](http://www.linuxhowtos.org/System/procstat.htm)
 2. Because Bash doesn't support floating calculation , so there is only integer % .
