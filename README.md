@@ -13,4 +13,9 @@ So I decide to writing a tool to make myself satisfied.
 
 Now it is just an idea and I'm just workinig on it .
 
-Note : This project use 'cat /proc/stat' to collect information ,using regex , so only work with Linux 2.6.24 and newer version because of 9 columns.See in:[http://www.linuxhowtos.org/System/procstat.htm](http://www.linuxhowtos.org/System/procstat.htm)
+
+
+Note :
+
+1. This project use 'cat /proc/stat' to collect information ,using regex , so only work with Linux 2.6.24 and newer version because of 9 columns.See in:[http://www.linuxhowtos.org/System/procstat.htm](http://www.linuxhowtos.org/System/procstat.htm)
+2. Because Bash doesn't support floating calculation , so there is only integer % .
