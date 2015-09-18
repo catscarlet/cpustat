@@ -1,5 +1,5 @@
 # cpustat
-A very simple cpu usage calculation ,simply output text of cpu usage percentages ,two version writing by shell/php .
+A very simple cpu usage percentages monitor tools .simply calculate and output text of cpu usage percentages ,two version writing by shell/php .
 
 Nowadays there are a lot of tools can statistic cpu performance .They are very powerful because they can record cpu performance and save the log , or they have a good readability with a GUI ,such as sar and nmon.
 
