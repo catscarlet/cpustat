@@ -1,38 +1,69 @@
 <?php
 
-$timerange = null;
+$timerange = 1;
 $inforlevel = 's';
-//if you need to use this in brower or want to adjust timerange, just set value like $_GET or number .
+//If you need to use this in brower or want to adjust timerange, just set value like $_GET or a new number .
 //$timerange = $_GET['timerange'];
-//$timerange = 5;
-//$inforlevel = 's'
-if ($timerange) {
-    echopcpu($inforlevel, $timerange);
-} else {
-    echopcpu();
+
+switch ($inforlevel) {
+  case 's':
+    echopcpu($timerange);
+    break;
+  case 'a':
+    echopcpuall($timerange);
+    break;
+  default:
+    echo 'Error?';
+    break;
 }
 
-function echopcpu($inforlevel = 's', $timerange = 1)
+function percentage($denominator, $numerator, $round)
 {
-    //echo $timerange;
+    $percentage = 100 * $denominator / $numerator;
+    $percentage = round($percentage, $round);
+
+    return $percentage;
+}
+
+function echopcpu($timerange)
+{
     $procstat_t1 = getprocstat();
     sleep($timerange);
     $procstat_t2 = getprocstat();
     $nproc = getnproc();
     for ($cpuid = 0; $cpuid < $nproc; ++$cpuid) {
-        $diffstat[$cpuid]['total'] = array_sum($procstat_t2[$cpuid]) - array_sum($procstat_t1[$cpuid]);
         $diffstat[$cpuid] = subtractarray($procstat_t1[$cpuid], $procstat_t2[$cpuid]);
-        $pcpu[$cpuid] = 100 * ($diffstat[$cpuid]['total'] - $diffstat[$cpuid]['idle']) / $diffstat[$cpuid]['total'];
-        //var_dump($pcpu);
-        $pcpu[$cpuid] = round($pcpu[$cpuid], 2);
+        $diffstat[$cpuid]['total'] = array_sum($procstat_t2[$cpuid]) - array_sum($procstat_t1[$cpuid]);
+        $pcpu[$cpuid] = percentage(($diffstat[$cpuid]['total'] - $diffstat[$cpuid]['idle']), $diffstat[$cpuid]['total'], 2);
         echo 'cpu'.$cpuid."\t".$pcpu[$cpuid].'%';
+        echo "\n";
+    }
+}
+
+function echopcpuall($timerange)
+{
+    $procstat_t1 = getprocstat();
+    sleep($timerange);
+    $procstat_t2 = getprocstat();
+    $nproc = getnproc();
+    echo "CPUID\tuser\tnice\tsystem\tidle\tiowait\tirq\tsoftirq\tsteal\tguest\tguest_nice\n";
+    for ($cpuid = 0; $cpuid < $nproc; ++$cpuid) {
+        $diffstat[$cpuid] = subtractarray($procstat_t1[$cpuid], $procstat_t2[$cpuid]);
+        $diffstattotal = array_sum($procstat_t2[$cpuid]) - array_sum($procstat_t1[$cpuid]);
+        foreach ($diffstat[$cpuid] as $column => $value) {
+            $pcpu[$cpuid][$column] = percentage($diffstat[$cpuid][$column], $diffstattotal, 2);
+        }
+        echo $cpuid."\t";
+        foreach ($pcpu[$cpuid] as $column => $value) {
+            echo $value.'%'."\t";
+        }
         echo "\n";
     }
 }
 
 function getnproc()
 {
-    //get the number of processing units available
+    //Get the number of processing units available
     exec('nproc', $nproc);
     $nproc = $nproc[0];
 
@@ -41,9 +72,8 @@ function getnproc()
 
 function getprocstat()
 {
-    //get the information of processing units by cat /proc/stat
+    //Get the information of processing units by cat /proc/stat
     $nproc = getnproc();
-
     exec('cat /proc/stat|grep "^cpu"|tail -n '.$nproc, $procstat);
     foreach ($procstat as $cpuid => $v) {
         preg_match('/cpu(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)/', $v, $procstat_percpu);
@@ -59,12 +89,6 @@ function getprocstat()
                 'guest' => (int) $procstat_percpu[10],
                 'guest_nice' => (int) $procstat_percpu[11],
                 );
-/*
-        $tmpsum = array_sum($tmp[$cpuid]);
-        $time = time();
-        $tmp[$cpuid]['total'] = $tmpsum;
-        $tmp[$cpuid]['time'] = $time;
-*/
     }
 
     return $tmp;
