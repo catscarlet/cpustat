@@ -1,7 +1,7 @@
 <?php
 
 $timerange = 1;
-$inforlevel = 's';
+$inforlevel = 'a';
 //If you need to use this in brower or want to adjust timerange, just set value like $_GET or a new number .
 //$timerange = $_GET['timerange'];
 
@@ -55,7 +55,7 @@ function echopcpuall($timerange)
         }
         echo $cpuid."\t";
         foreach ($pcpu[$cpuid] as $column => $value) {
-            echo $value.'%'."\t";
+            echo $value."\t";
         }
         echo "\n";
     }
