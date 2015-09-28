@@ -1,6 +1,7 @@
 #!/bin/bash
 _s=0
 _a=0
+sleep=1
 #Simple output
 simple_output(){
 for (( i = 0; i < $NPROC; i++ )); do
@@ -31,8 +32,18 @@ done
 
 do_help() {
    cat <<EOF
+
 A very simple cpu usage percentages monitor tools .simply calculate and output text of cpu usage percentages
+
+Usage $0 [-a|-s|-h]
+
+Options
+  -h: Print this messsage
+  -s: Print simple cpu usages
+  -a: Print all kinds of works of cpu usages
+
 For more information , please refer to : https://github.com/catscarlet/cpustat
+
 EOF
 }
 
@@ -78,7 +89,7 @@ guest_nice_t1[$i]=${procstat_t1[10]}
 #echo ${total_t1[$i]}
 done
 
-sleep 1
+sleep $sleep
 
 for (( i = 0; i < $NPROC; i++ )); do
 ((sedline=i+2))
@@ -114,7 +125,7 @@ for (( i = 0; i < $NPROC; i++ )); do
 #echo ${total_subtracted[$i]}
 done
 
-[ "$1" = "" ] && _s=1 
+[ "$1" = "" ] && _s=1
 
 if [ $_s = 1 ]; then
     simple_output
