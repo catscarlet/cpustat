@@ -1,6 +1,7 @@
 <?php
 
 $timerange = 1;
+//Level 'a' for all information . Level 's' for simple information .
 $inforlevel = 'a';
 //If you need to use this in brower or want to adjust timerange, just set value like $_GET or a new number .
 //$timerange = $_GET['timerange'];
