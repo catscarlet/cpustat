@@ -1,6 +1,62 @@
 #!/bin/bash
+_s=0
+_a=0
+#Simple output
+simple_output(){
+for (( i = 0; i < $NPROC; i++ )); do
+((pcpu[$i]= 100 * (total_subtracted[$i]-idle_subtracted[$i]) / total_subtracted[$i]))
+echo -e cpu$i "\t" ${pcpu[$i]}%
+done
+}
 
-#
+#All information output
+all_output(){
+echo -e "CPUID\tuser\tnice\tsystem\tidle\tiowait\tirq\tsoftirq\tsteal\tguest\tguest_nice";
+for (( i = 0; i < $NPROC; i++ )); do
+((user_p[$i]= 100 * user_subtracted[$i]/total_subtracted[$i]))
+((nice_p[$i]= 100 * nice_subtracted[$i]/total_subtracted[$i]))
+((idle_p[$i]= 100 * idle_subtracted[$i]/total_subtracted[$i]))
+((system_p[$i]= 100 * system_subtracted[$i]/total_subtracted[$i]))
+((iowait_p[$i]= 100 * iowait_subtracted[$i]/total_subtracted[$i]))
+((irq_p[$i]= 100 * irq_subtracted[$i]/total_subtracted[$i]))
+((softirq_p[$i]= 100 * softirq_subtracted[$i]/total_subtracted[$i]))
+((steal_p[$i]= 100 * steal_subtracted[$i]/total_subtracted[$i]))
+((guest_p[$i]= 100 * guest_subtracted[$i]/total_subtracted[$i]))
+((guest_nice_p[$i]= 100 * guest_nice_subtracted[$i]/total_subtracted[$i]))
+echo -e cpu$i"\t"${user_p[$i]}"\t"${nice_p[$i]}"\t"${system_p[$i]}"\t"${idle_p[$i]}"\t"${iowait_p[$i]}"\t"${irq_p[$i]}"\t"${softirq_p[$i]}"\t"${steal_p[$i]}"\t"${guest_p[$i]}"\t"${guest_nice_p[$i]}
+
+#echo ${total_p[$i]}
+done
+}
+
+do_help() {
+   cat <<EOF
+A very simple cpu usage percentages monitor tools .simply calculate and output text of cpu usage percentages
+For more information , please refer to : https://github.com/catscarlet/cpustat
+EOF
+}
+
+do_error() {
+    do_help 1>2
+    exit 1
+}
+
+while getopts "ash" op; do
+    case "$op" in
+        s)  _s=1
+            ;;
+        a)  _a=1
+            ;;
+        h) do_help
+            exit
+            ;;
+        *) do_help
+            exit
+            ;;
+    esac
+done
+
+
 
 NPROC=(`nproc`)
 #echo $NPROC
@@ -23,7 +79,6 @@ guest_nice_t1[$i]=${procstat_t1[10]}
 done
 
 sleep 1
-
 
 for (( i = 0; i < $NPROC; i++ )); do
 ((sedline=i+2))
@@ -59,26 +114,12 @@ for (( i = 0; i < $NPROC; i++ )); do
 #echo ${total_subtracted[$i]}
 done
 
-#Simple output
-for (( i = 0; i < $NPROC; i++ )); do
-((pcpu[$i]= 100 * (total_subtracted[$i]-idle_subtracted[$i]) / total_subtracted[$i]))
-echo -e cpu$i "\t" ${pcpu[$i]}%
-done
+[ "$1" = "" ] && _s=1 
 
-#All information output
-echo -e "CPUID\tuser\tnice\tsystem\tidle\tiowait\tirq\tsoftirq\tsteal\tguest\tguest_nice";
-for (( i = 0; i < $NPROC; i++ )); do
-((user_p[$i]= 100 * user_subtracted[$i]/total_subtracted[$i]))
-((nice_p[$i]= 100 * nice_subtracted[$i]/total_subtracted[$i]))
-((idle_p[$i]= 100 * idle_subtracted[$i]/total_subtracted[$i]))
-((system_p[$i]= 100 * system_subtracted[$i]/total_subtracted[$i]))
-((iowait_p[$i]= 100 * iowait_subtracted[$i]/total_subtracted[$i]))
-((irq_p[$i]= 100 * irq_subtracted[$i]/total_subtracted[$i]))
-((softirq_p[$i]= 100 * softirq_subtracted[$i]/total_subtracted[$i]))
-((steal_p[$i]= 100 * steal_subtracted[$i]/total_subtracted[$i]))
-((guest_p[$i]= 100 * guest_subtracted[$i]/total_subtracted[$i]))
-((guest_nice_p[$i]= 100 * guest_nice_subtracted[$i]/total_subtracted[$i]))
-echo -e cpu$i"\t"${user_p[$i]}"\t"${nice_p[$i]}"\t"${system_p[$i]}"\t"${idle_p[$i]}"\t"${iowait_p[$i]}"\t"${irq_p[$i]}"\t"${softirq_p[$i]}"\t"${steal_p[$i]}"\t"${guest_p[$i]}"\t"${guest_nice_p[$i]}
+if [ $_s = 1 ]; then
+    simple_output
+fi
 
-#echo ${total_p[$i]}
-done
+if [ $_a = 1 ]; then
+    all_output
+fi
