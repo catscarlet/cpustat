@@ -39,7 +39,7 @@ Usage $0 [-a|-s|-h]
 
 Options
   -h: Print this messsage
-  -s: Print simple cpu usages
+  -s: Print simple cpu usages(default)
   -a: Print all kinds of works of cpu usages
 
 For more information , please refer to : https://github.com/catscarlet/cpustat
