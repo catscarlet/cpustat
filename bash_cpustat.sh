@@ -2,6 +2,7 @@
 _s=0
 _a=0
 sleep=1
+
 #Simple output
 simple_output(){
 for (( i = 0; i < $NPROC; i++ )); do
@@ -25,8 +26,6 @@ for (( i = 0; i < $NPROC; i++ )); do
 ((guest_p[$i]= 100 * guest_subtracted[$i]/total_subtracted[$i]))
 ((guest_nice_p[$i]= 100 * guest_nice_subtracted[$i]/total_subtracted[$i]))
 echo -e cpu$i"\t"${user_p[$i]}"\t"${nice_p[$i]}"\t"${system_p[$i]}"\t"${idle_p[$i]}"\t"${iowait_p[$i]}"\t"${irq_p[$i]}"\t"${softirq_p[$i]}"\t"${steal_p[$i]}"\t"${guest_p[$i]}"\t"${guest_nice_p[$i]}
-
-#echo ${total_p[$i]}
 done
 }
 
@@ -70,7 +69,6 @@ done
 
 
 NPROC=(`nproc`)
-#echo $NPROC
 for (( i = 0; i < $NPROC; i++ )); do
 ((sedline=i+2))
 procstat_t1=(`cat /proc/stat | grep '^cpu' |sed -n "$sedline,$sedline p"`)
@@ -84,9 +82,7 @@ softirq_t1[$i]=${procstat_t1[7]}
 steal_t1[$i]=${procstat_t1[8]}
 guest_t1[$i]=${procstat_t1[9]}
 guest_nice_t1[$i]=${procstat_t1[10]}
-#echo cpu$i ${user_t1[$i]} ${nice_t1[$i]} ${system_t1[$i]} ${idle_t1[$i]} ${iowait_t1[$i]} ${irq_t1[$i]} ${softirq_t1[$i]} ${steal_t1[$i]} ${guest_t1[$i]} ${guest_nice_t1[$i]}
 ((total_t1[$i]=user_t1[$i]+nice_t1[$i]+system_t1[$i]+idle_t1[$i]+iowait_t1[$i]+irq_t1[$i]+softirq_t1[$i]+steal_t1[$i]+guest_t1[$i]+guest_nice))
-#echo ${total_t1[$i]}
 done
 
 sleep $sleep
@@ -104,9 +100,7 @@ softirq_t2[$i]=${procstat_t2[7]}
 steal_t2[$i]=${procstat_t2[8]}
 guest_t2[$i]=${procstat_t2[9]}
 guest_nice_t2[$i]=${procstat_t2[10]}
-#echo cpu$i ${user_t2[$i]} ${nice_t2[$i]} ${system_t2[$i]} ${idle_t2[$i]} ${iowait_t2[$i]} ${irq_t2[$i]} ${softirq_t2[$i]} ${steal_t2[$i]} ${guest_t2[$i]} ${guest_nice_t2[$i]}
 ((total_t2[$i]=user_t2[$i]+nice_t2[$i]+system_t2[$i]+idle_t2[$i]+iowait_t2[$i]+irq_t2[$i]+softirq_t2[$i]+steal_t2[$i]+guest_t2[$i]+guest_nice))
-#echo ${total_t2[$i]}
 done
 
 for (( i = 0; i < $NPROC; i++ )); do
@@ -120,9 +114,7 @@ for (( i = 0; i < $NPROC; i++ )); do
 ((steal_subtracted[$i]=steal_t2[$i]-steal_t1[$i]))
 ((guest_subtracted[$i]=guest_t2[$i]-guest_t1[$i]))
 ((guest_nice_subtracted[$i]=guest_nice_t2[$i]-guest_nice_t1[$i]))
-#echo cpu$i ${user_subtracted[$i]} ${nice_subtracted[$i]} ${system_subtracted[$i]} ${idle_subtracted[$i]} ${iowait_subtracted[$i]} ${irq_subtracted[$i]} ${softirq_subtracted[$i]} ${steal_subtracted[$i]} ${guest_subtracted[$i]} ${guest_nice_subtracted[$i]}
 ((total_subtracted[$i]= total_t2[$i]-total_t1[$i]))
-#echo ${total_subtracted[$i]}
 done
 
 [ "$1" = "" ] && _s=1
