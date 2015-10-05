@@ -29,6 +29,7 @@ echo -e cpu$i"\t"${user_p[$i]}"\t"${nice_p[$i]}"\t"${system_p[$i]}"\t"${idle_p[$
 done
 }
 
+#Information for help
 do_help() {
    cat <<EOF
 
@@ -46,11 +47,13 @@ For more information , please refer to : https://github.com/catscarlet/cpustat
 EOF
 }
 
+#Error message
 do_error() {
     do_help 1>2
     exit 1
 }
 
+#Here start the cpustat
 while getopts "ash" op; do
     case "$op" in
         s)  _s=1
