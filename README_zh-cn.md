@@ -1,7 +1,14 @@
-# cpustat(CPU使用率查看工具)
-*概述点击这里为中国的自述。[中文文档（https://github.com/catscarlet/cpustat/blob/master/README_zh-cn.md）*
+＃cpustat
+
+_Cli​​ck在这里为中国的自述。[中文文档（https://github.com/catscarlet/cpustat/blob/master/README_zh-cn.md）_
+
+##概述
+
+
 
 一个非常简单的CPU占用率的百分比监控工具.simply计算和CPU使用百分比输出文本，第二版书面壳/ PHP。
+
+###之所以我做了这个
 
 现在有很多工具可以统计CPU的性能。他们是非常强大的，因为他们可以记录CPU性能和保存日志，或者他们有一个图形用户界面，如SAR和nmon的一个良好的可读性。
 
@@ -16,8 +23,10 @@
 现在，它只是一个想法，我只是workinig就可以了。
 
 注意 ：
-- 这个项目使用的“猫的/ proc / STAT”收集信息，使用正则表达式，所以只能使用Linux 2.6.24，更新版本的工作，因为有9 columns.See在：[http://www.linuxhowtos.org/系统/ procstat.htm]（http://www.linuxhowtos.org/System/procstat.htm）
+- 这个项目使用的“猫的/ proc / STAT”收集信息，使用正则表达式，所以只能使用Linux 2.6.24和新版本工作，因为有9 columns.See在：[http://www.linuxhowtos.org/System /procstat.htm](http://www.linuxhowtos.org/System/procstat.htm）
 - 由于击不支持浮点运算，所以只有整数％。我不想用BC支持浮点计算，因为没有必要这样严格计算。
+
+##只安装文件复制到目标计算机，并给bash_cpustat.sh执行权限。
 
 ##用法
 
@@ -29,7 +38,13 @@
 PHP php_cpustat.php
 ```
 
-请注意，如果你想改变输出电平，编辑文件，修改的值** $ inforlevel ='A'; **
+！[php_cpustat.php水平= S]（https://raw.githubusercontent.com/catscarlet/cpustat/master/snapshot/snap380.png）
+
+注意：如果你想改变输出电平，编辑文件，修改的值** $ inforlevel ='A'; **
+
+！[php_cpustat.php级别=α]（https://raw.githubusercontent.com/catscarlet/cpustat/master/snapshot/snap234.png）
+
+注意：如果您在布劳尔打开php_cpustat.php，输出会显得很乱，因为它使用LF作为换行符，而不是CRLF。
 
 ###击只需像这样运行（执行所需的权限）：
 
@@ -38,3 +53,5 @@ PHP php_cpustat.php
 ```
 
 您可以使用** -_- ^ h _ **以了解更多信息
+
+！[bash_cpustat.sh]（https://raw.githubusercontent.com/catscarlet/cpustat/master/snapshot/snap233.png）
