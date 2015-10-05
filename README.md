@@ -1,5 +1,5 @@
 # cpustat
-*Overview Click here for Chinese README.[中文文档](https://github.com/catscarlet/cpustat/blob/master/README_zh-cn.md)*
+_Overview Click here for Chinese README.[中文文档](https://github.com/catscarlet/cpustat/blob/master/README_zh-cn.md)_
 
 A very simple cpu usage percentages monitor tools .simply calculate and output text of cpu usage percentages ,two version writing by shell/php .
 
@@ -16,7 +16,7 @@ So I decide to writing a tool to make myself satisfied.
 Now it is just an idea and I'm just workinig on it .
 
 Note :
-- This project use 'cat /proc/stat' to collect information ,using regex , so only work with Linux 2.6.24 and newer version because of there are 9 columns.See in:[http://www.linuxhowtos.org/System/procstat.htm](http://www.linuxhowtos.org/System/procstat.htm)
+- This project use 'cat /proc/stat' to collect information ,using regex , so only work with Linux 2.6.24 and newer version because there are 9 columns.See in:[http://www.linuxhowtos.org/System/procstat.htm](http://www.linuxhowtos.org/System/procstat.htm)
 - Because Bash doesn't support floating calculation , so there is only integer % .I don't want to use bc to support floating calculation ,because there is no need of such exact computation.
 
 ##Usage
@@ -29,7 +29,13 @@ Open this in brower , or use php php_cpustat.php :
 php php_cpustat.php
 ```
 
-Note that if you want to change output level , edit file and change the value of **$inforlevel = 'a';**
+![php_cpustat.php level=s](https://raw.githubusercontent.com/catscarlet/cpustat/master/snapshot/snap380.png)
+
+Notice :If you want to change output level , edit file and change the value of **$inforlevel = 'a';**
+
+![php_cpustat.php level=a](https://raw.githubusercontent.com/catscarlet/cpustat/master/snapshot/snap234.png)
+
+Notice :If you open php_cpustat.php in a brower , the output will seem in a mess because the it use LF for newline , not CRLF .
 
 ###Bash Simply run like this (execute permission needed):
 
@@ -38,3 +44,5 @@ Note that if you want to change output level , edit file and change the value of
 ```
 
 You can use **_-h_** for more information
+
+![bash_cpustat.sh](https://raw.githubusercontent.com/catscarlet/cpustat/master/snapshot/snap233.png)
