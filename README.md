@@ -37,11 +37,11 @@ Open this in brower, or use php php_cpustat.php :
 php php_cpustat.php
 ```
 
-![php_cpustat.php level=s](https://raw.githubusercontent.com/catscarlet/cpustat/master/snapshot/snap380.png)
+![php_cpustat.php level=s](https://raw.githubusercontent.com/catscarlet/cpustat/master/snapshot/php_cpustat_s.png)
 
 Notice :If you want to change output level, edit file and change the value of **$inforlevel = 'a';**
 
-![php_cpustat.php level=a](https://raw.githubusercontent.com/catscarlet/cpustat/master/snapshot/snap234.png)
+![php_cpustat.php level=a](https://raw.githubusercontent.com/catscarlet/cpustat/master/snapshot/php_cpustat_a.png)
 
 Notice :If you open php_cpustat.php in a brower, the output will seem in a mess because the it use LF for newline, not CRLF.
 
@@ -53,7 +53,8 @@ Notice :If you open php_cpustat.php in a brower, the output will seem in a mess 
 
 You can use **_-h_** for more information.
 
-![bash_cpustat.sh](https://raw.githubusercontent.com/catscarlet/cpustat/master/snapshot/snap233.png)
+![bash_cpustat.sh](https://raw.githubusercontent.com/catscarlet/cpustat/master/snapshot/bash_cpustat.png)
+
 ##Contributor
 
 Thank [梅桐天土小星星](http://weibo.com/p/1005051861229632) for fixing grammatical errors of README.
