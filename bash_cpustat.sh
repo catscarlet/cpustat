@@ -33,7 +33,7 @@ done
 do_help() {
    cat <<EOF
 
-A very simple cpu usage percentages monitor tools .simply calculate and output text of cpu usage percentages
+A very simple cpu usage percentages monitor tools .Simply calculate and output cpu usage percentages in text .Two versions coding by shell and php .
 
 Usage $0 [-a|-s|-h]
 
