@@ -13,7 +13,7 @@ Nowadays there are a lot of tools that can collect, report, or save percentage o
 
 But I didn't find a tool which can simply output a percentage of cpu time.
 
-Earlier I wrote a system status monitor, so I need to find some tools to monitor the usage of cpu, memory and disk.  I chose 'free' and 'df' to watch memory and disk.  However, I couldn't find a simple tool to monitor cpu.  I tried top and found it couldn't unfold cpu without interactive mode.  Similarly found sar only record log and nmon only work in interactive mode.
+Earlier I wrote a system status monitor, so I need to find some tools to monitor the usage of cpu, memory and disk. I chose 'free' and 'df' to watch memory and disk. However, I couldn't find a simple tool to monitor cpu. I tried top and found it couldn't unfold cpu without interactive mode. Similarly found sar only record log and nmon only work in interactive mode.
 
 Even though they are powerful tools, and maybe they have a mode to output a simple or complex output, I only need a very simple tool to output a simple value of cpu usage, no need of history log, no need of interactive mode.
 
