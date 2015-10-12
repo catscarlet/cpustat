@@ -45,7 +45,9 @@ Notice :If you want to change output level, edit file and change the value of **
 
 Notice :If you open php_cpustat.php in a brower, the output will seem in a mess because the it use LF for newline, not CRLF.
 
-###Bash Simply run like this (execute permission needed):
+###Bash
+
+Simply run like this (execute permission needed):
 
 ```
 ./bash_cpustat.sh
