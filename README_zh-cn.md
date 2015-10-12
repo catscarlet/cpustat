@@ -21,17 +21,17 @@ _（你可以跳过这一段。这些只是我的抱怨）_
 所以，我决定写一个工具来满足自己的需求。
 
 注意 ：
-- 这个项目使用的"cat/proc/stat"收集CPU的信息信息，因为使用正则表达式固定了stat的9列s，所以只能使用Linux 2.6.24和新版本工作，因为有9列。请参阅：[[http://www.linuxhowtos.org/System/procstat.htm]（http://www.linuxhowtos.org/System/procstat.htm）](http://www.linuxhowtos.org/System/procstat.htm]（http://www.linuxhowtos.org/System/procstat.htm）)
-- 由于击不支持浮点运算，所以只有整数％。我不想用BC支持浮点计算，因为没有必要这样严格计算。
+- 这个项目使用的"cat/proc/stat"收集CPU的信息信息，因为使用正则表达式固定了stat的9列输出，所以只能用于Linux 2.6.24以后的版本。详情请参阅：[[http://www.linuxhowtos.org/System/procstat.htm]（http://www.linuxhowtos.org/System/procstat.htm）](http://www.linuxhowtos.org/System/procstat.htm]（http://www.linuxhowtos.org/System/procstat.htm）)
+- 由于bash不支持浮点运算，所以只有整形输出。我不想用bc进行浮点计算，因为没有必要。
 
 ##安装
 
-只需将文件复制到目标计算机。给bash_cpustat.sh执行权限，如果你需要它。
+只需将文件复制到目标计算机。如果你需要使用shell版本，给bash_cpustat.sh加上执行权限。
 
 ##用法
 
 # PHP
-在布劳尔打开这个，或者使用PHP php_cpustat.php：
+在浏览器中直接打开打开这个，或者在shell下使用php php_cpustat.php：
 
 ```
 php php_cpustat.php
@@ -39,22 +39,24 @@ php php_cpustat.php
 
 ![php_cpustat.php level=s](https://raw.githubusercontent.com/catscarlet/cpustat/master/snapshot/php_cpustat_s.png)
 
-注意：如果你想改变输出电平，编辑文件，修改的值**$inforlevel = 'a';**
+注意：如果你想改变输出级别，编辑文件，修改值**$inforlevel = 'a';**
 
 ![php_cpustat.php level=a](https://raw.githubusercontent.com/catscarlet/cpustat/master/snapshot/php_cpustat_a.png)
 
-注意：如果您在布劳尔打开php_cpustat.php，输出会显得很乱，因为它使用LF作为换行符，而不是CRLF。
+注意：如果您在浏览器中直接打开php_cpustat.php，输出可能会显得很乱，因为它使用LF作为换行符，而不是CRLF。
 
-###击只需像这样运行（执行所需的权限）：
+###Bash
+
+直接在shell下执行即可（需要执行权限）
 
 ```
 ./bash_cpustat.sh
 ```
 
-您可以使用**_-h_**以了解更多信息
+您可以使用**_-h_**了解更多信息
 
 ![bash_cpustat.sh](https://raw.githubusercontent.com/catscarlet/cpustat/master/snapshot/bash_cpustat.png)
 
 ##贡献者
 
-谢谢[梅桐天土小星星](http://weibo.com/p/1005051861229632)修复自述的语法错误。
+谢谢[梅桐天土小星星](http://weibo.com/p/1005051861229632)修复readme的语法错误。
