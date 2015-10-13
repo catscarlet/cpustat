@@ -38,9 +38,9 @@ A very simple cpu usage percentages monitor tools .Simply calculate and output c
 Usage $0 [-a|-s|-h]
 
 Options
-  -h: Print this messsage
   -s: Print simple cpu usages(default)
   -a: Print all kinds of works of cpu usages
+  -h: Print this messsage
 
 For more information , please refer to : https://github.com/catscarlet/cpustat
 
