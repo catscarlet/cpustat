@@ -13,7 +13,7 @@ Nowadays there are a lot of tools that can collect, report, or save percentage o
 
 But I didn't find a tool which can simply output a percentage of cpu time.
 
-Earlier I wrote a system status monitor, so I need to find some tools to monitor the usage of cpu, memory and disk.  I chose 'free' and 'df' to watch memory and disk.  However, I couldn't find a simple tool to monitor cpu.  I tried top and found it couldn't unfold cpu without interactive mode.  Similarly found sar only record log and nmon only work in interactive mode.
+Earlier I wrote a system status monitor, so I need to find some tools to monitor the usage of cpu, memory and disk. I chose 'free' and 'df' to watch memory and disk. However, I couldn't find a simple tool to monitor cpu. I tried top and found it couldn't unfold cpu without interactive mode. Similarly found sar only record log and nmon only work in interactive mode.
 
 Even though they are powerful tools, and maybe they have a mode to output a simple or complex output, I only need a very simple tool to output a simple value of cpu usage, no need of history log, no need of interactive mode.
 
@@ -45,7 +45,9 @@ Notice :If you want to change output level, edit file and change the value of **
 
 Notice :If you open php_cpustat.php in a brower, the output will seem in a mess because the it use LF for newline, not CRLF.
 
-###Bash Simply run like this (execute permission needed):
+###Bash
+
+Simply run like this (execute permission needed):
 
 ```
 ./bash_cpustat.sh

@@ -1,35 +1,35 @@
 #cpustat
+
 ##概述
 
-一个非常简单的CPU占用率的百分比监控工具。简单地计算，并在文本输出的CPU使用率百分比。两个版本由外壳和PHP的编码。
+一个非常简单的CPU使用率监控工具。一条命令，无界面，无日志。做到**简单部署，简单执行，简单输出**。共有php和bash(shell)两个版本。
 
-###之所以我做了这个
+###为什么要做这个
 
-_（你可以跳过这个阶段。这只是我的投诉）_
+_（你可以跳过本段。这些只是我的抱怨）_
 
-现在有很多的工具，可以收集，报告或保存的CPU时间的百分比。他们是非常强大的，因为它们可以记录CPU性能和保存日志，或者他们有一个图形用户界面，如SAR和nmon的一个良好的可读性。
+现在有很多的工具可以收集或保存的CPU的使用情况。他们一般功能都非常强大，或者可以定时记录CPU性能日志，或者有一个易读易用的图形化界面，如sar和nmon。
 
-但我没有找到一个工具的CPU时间，这可以简单地输出的百分比。
+但是我没有找到一个能简单输出CPU实时使用率的工具。
 
-早些时候，我写了一个系统状态监控，所以我需要找到一些工具来监控CPU，内存和磁盘的使用情况。我选择了'自由'和'东风'来观看内存和磁盘。但是，我无法找到一个简单的工具来监控CPU。我试着顶，发现无互动的模式下，它无法展开CPU。同样发现SAR只记录日志和nmon的唯一的工作在交互模式。
+之前我写了一个系统状态监控工具，需要一些工具来监控CPU、内存和磁盘的使用情况。我选择了'free'和'df'来查看内存和磁盘的使用情况。然而我没有找到适合用来监视CPU使用状态的软件。 我最初尝试了'top'，发现在无交互的情况下，它的输出无法展开各个CPU的使用情况。 之后我尝试了其他几款工具，发现sar只记录特定时刻的CPU使用情况，只记录日志，非实时；而nmon只工作于交互模式。
 
-即使他们是强大的工具，也许他们有一个模式来输出简单或复杂的输出，我只需要一个非常简单的工具来输出CPU使用率，不需要历史记录的，没有必要的交互模式的一个简单的值。
+虽然这些工具十分强大，也许他们有一个模式来简单输出，然而我只需要一个非常简单的工具来输出CPU使用率，不需要历史记录的，也不需要图形界面或交互模式。
 
-所以，我决定写一个工具来让自己满意。
+所以，我决定写一个工具来满足自己的需求。
 
 注意 ：
-- 这个项目使用的“cat/proc/stat”收集信息，使用正则表达式，所以只能使用Linux 2.6.24和新版本工作，因为有9列。请参阅：[http://www.linuxhowtos.org/System/procstat.htm]（http://www.linuxhowtos.org/System/procstat.htm）
-- 由于击不支持浮点运算，所以只有整数％。我不想用BC支持浮点计算，因为没有必要这样严格计算。
+- 这个项目使用的'cat/proc/stat'收集CPU的使用信息，因为采用了正则表达式来收集stat的9列输出，所以只能用于Linux 2.6.24以后的版本。详情请参阅：[http://www.linuxhowtos.org/System/procstat.htm](http://www.linuxhowtos.org/System/procstat.htm)
+- 由于bash不支持浮点运算，所以只有整形输出。我不想用bc进行浮点计算，因为没有必要。
 
 ##安装
 
-只需将文件复制到目标计算机。给bash_cpustat.sh执行权限，如果你需要它。
+只需将文件复制到目标计算机即可。如果你需要使用shell版本，给bash_cpustat.sh加上执行权限。
 
 ##用法
 
-### PHP
-
-在布劳尔打开这个，或者使用PHP php_cpustat.php：
+# PHP
+在浏览器中直接打开打开这个，或者在shell下使用php php_cpustat.php：
 
 ```
 php php_cpustat.php
@@ -37,22 +37,24 @@ php php_cpustat.php
 
 ![php_cpustat.php level=s](https://raw.githubusercontent.com/catscarlet/cpustat/master/snapshot/php_cpustat_s.png)
 
-注意：如果你想改变输出电平，编辑文件，修改的值**$inforlevel = 'a';**
+注意：如果你想改变输出级别，编辑文件，修改值**$inforlevel = 'a';**
 
 ![php_cpustat.php level=a](https://raw.githubusercontent.com/catscarlet/cpustat/master/snapshot/php_cpustat_a.png)
 
-注意：如果您在布劳尔打开php_cpustat.php，输出会显得很乱，因为它使用LF作为换行符，而不是CRLF。
+注意：如果您在浏览器中直接打开php_cpustat.php，输出可能会显得很乱，因为它使用LF作为换行符，而不是CRLF。
 
-###击只需像这样运行（执行所需的权限）：
+###Bash
+
+直接在shell下执行即可（需要执行权限）
 
 ```
 ./bash_cpustat.sh
 ```
 
-您可以使用**_-h_**以了解更多信息
+您可以使用**_-h_**了解更多信息
 
 ![bash_cpustat.sh](https://raw.githubusercontent.com/catscarlet/cpustat/master/snapshot/bash_cpustat.png)
 
 ##贡献者
 
-谢谢[梅桐天土小星星](http://weibo.com/p/1005051861229632)修复自述的语法错误。
+谢谢[梅桐天土小星星](http://weibo.com/p/1005051861229632)修复readme的语法错误。
