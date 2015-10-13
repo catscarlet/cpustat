@@ -31,19 +31,27 @@ Just copy files to your destination computer. Give bash_cpustat.sh execute permi
 
 ###PHP
 
-Open this in brower, or use php php_cpustat.php :
+Run php_cpustat.php in php-cli, Or open it in brower (need http service):
 
 ```
 php php_cpustat.php
 ```
 
-![php_cpustat.php level=s](https://raw.githubusercontent.com/catscarlet/cpustat/master/snapshot/php_cpustat_s.png)
+```
+curl http://localhost/cpustat/php_cpustat.php
+```
+
+![php php_cpustat.php level=s](https://raw.githubusercontent.com/catscarlet/cpustat/master/snapshot/php_cpustat_s.png)
+
+![curl php_cpustat.php level=s](https://raw.githubusercontent.com/catscarlet/cpustat/master/snapshot/php_cpustat_s_curl.png)
 
 Notice :If you want to change output level, edit file and change the value of **$inforlevel = 'a';**
 
-![php_cpustat.php level=a](https://raw.githubusercontent.com/catscarlet/cpustat/master/snapshot/php_cpustat_a.png)
+![php php_cpustat.php level=a](https://raw.githubusercontent.com/catscarlet/cpustat/master/snapshot/php_cpustat_a.png)
 
-Notice :If you open php_cpustat.php in a brower, the output will seem in a mess because the it use LF for newline, not CRLF.
+![curl php_cpustat.php level=a](https://raw.githubusercontent.com/catscarlet/cpustat/master/snapshot/php_cpustat_a_curl.png)
+
+Notice :If you open php_cpustat.php in brower, the output may seem in a mess because the it use LF for newline, not CRLF.
 
 ###Bash
 
