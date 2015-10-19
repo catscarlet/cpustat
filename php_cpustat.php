@@ -18,7 +18,7 @@ switch ($inforlevel) {
     echopcpuall($timerange);
     break;
   default:
-    echo 'Error .Unrecognized level option';
+    echo "Error. Unrecognized level option. For more information ,please check https://github.com/catscarlet/cpustat\n";
     break;
 }
 
