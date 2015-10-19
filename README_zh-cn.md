@@ -2,7 +2,7 @@
 
 ##概述
 
-一个非常简单的CPU使用率监控工具。一条命令，无界面，无日志。做到**简单部署，简单执行，简单输出**。共有php和bash(shell)两个版本。
+一个用于linux下，非常简单的CPU使用率监控工具。一条命令，无界面，无日志。做到**简单部署，简单执行，简单输出**。共php和bash(shell)两个版本。
 
 ###为什么要做这个
 
@@ -28,20 +28,45 @@ _（你可以跳过本段。这些只是我的抱怨）_
 
 ##用法
 
-# PHP
-在浏览器中直接打开打开这个，或者在shell下使用php php_cpustat.php：
+###PHP
+
+在php-cli下使用php php_cpustat.php，或者在浏览器中直接打开：
+
+####php-cli
+
+直接执行：
 
 ```
 php php_cpustat.php
 ```
 
-![php_cpustat.php level=s](https://raw.githubusercontent.com/catscarlet/cpustat/master/snapshot/php_cpustat_s.png)
+![php php_cpustat.php level=s](https://raw.githubusercontent.com/catscarlet/cpustat/master/snapshot/php_cpustat_s.png)
 
-注意：如果你想改变输出级别，编辑文件，修改值**$inforlevel = 'a';**
+在php-cli模式下，你可以直接使用参数's' or 'a'改变输出等级：
 
-![php_cpustat.php level=a](https://raw.githubusercontent.com/catscarlet/cpustat/master/snapshot/php_cpustat_a.png)
+```
+php php_cpustat.php a
+```
 
-注意：如果您在浏览器中直接打开php_cpustat.php，输出可能会显得很乱，因为它使用LF作为换行符，而不是CRLF。
+![php php_cpustat.php level=-a](https://raw.githubusercontent.com/catscarlet/cpustat/master/snapshot/php_cpustat_a_a.png)
+
+####浏览器
+
+直接在浏览器中打开此文件，你可以用curl简单测试：
+
+```
+curl http://localhost/cpustat/php_cpustat.php
+```
+
+![curl php_cpustat.php level=s](https://raw.githubusercontent.com/catscarlet/cpustat/master/snapshot/php_cpustat_s_curl.png)
+
+![curl php_cpustat.php level=a](https://raw.githubusercontent.com/catscarlet/cpustat/master/snapshot/php_cpustat_a_curl.png)
+
+php_cpustat.php目前不支持浏览器参数，你需要修改默认输出级别来改变输出。
+
+**注意：** 如果您在浏览器中直接打开php_cpustat.php，输出可能会显得很乱，因为使用了LF作为换行符，而不是CRLF。
+
+**注意：** 如果你想改变默认输出级别，编辑文件，修改值 **$inforlevel = 'a';**
 
 ###Bash
 
@@ -57,4 +82,4 @@ php php_cpustat.php
 
 ##贡献者
 
-谢谢[梅桐天土小星星](http://weibo.com/p/1005051861229632)修复readme的语法错误。
+感谢[梅桐天土小星星](http://weibo.com/p/1005051861229632)修复readme的语法错误。

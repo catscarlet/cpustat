@@ -3,7 +3,7 @@
 
 _Click here for Chinese README.[中文文档](https://github.com/catscarlet/cpustat/blob/master/README_zh-cn.md)_
 
-A very simple cpu usage percentages monitor tools. Simply calculate and output cpu usage percentages in text. Two versions coding by shell and php.
+A very simple cpu usage percentages monitor tools for linux. Simply calculate and output cpu usage percentages in text. Two versions coding by shell and php.
 
 ###The reason why I made this
 
@@ -31,27 +31,45 @@ Just copy files to your destination computer. Give bash_cpustat.sh execute permi
 
 ###PHP
 
-Run php_cpustat.php in php-cli, Or open it in brower (need http service):
+Run php_cpustat.php in php-cli, or open it in brower (need http service):
+
+####php-cli
+
+Simply run like this:
 
 ```
 php php_cpustat.php
 ```
 
+![php php_cpustat.php level=s](https://raw.githubusercontent.com/catscarlet/cpustat/master/snapshot/php_cpustat_s.png)
+
+In php-cli, you can change output level directly using parameter 's' or 'a':
+
+```
+php php_cpustat.php a
+```
+
+![php php_cpustat.php level=-a](https://raw.githubusercontent.com/catscarlet/cpustat/master/snapshot/php_cpustat_a_a.png)
+
+####brower
+
+You can open php_cpustat.php in brower. Try to use curl easily:
+
 ```
 curl http://localhost/cpustat/php_cpustat.php
 ```
 
-![php php_cpustat.php level=s](https://raw.githubusercontent.com/catscarlet/cpustat/master/snapshot/php_cpustat_s.png)
-
 ![curl php_cpustat.php level=s](https://raw.githubusercontent.com/catscarlet/cpustat/master/snapshot/php_cpustat_s_curl.png)
-
-Notice :If you want to change output level, edit file and change the value of **$inforlevel = 'a';**
-
-![php php_cpustat.php level=a](https://raw.githubusercontent.com/catscarlet/cpustat/master/snapshot/php_cpustat_a.png)
 
 ![curl php_cpustat.php level=a](https://raw.githubusercontent.com/catscarlet/cpustat/master/snapshot/php_cpustat_a_curl.png)
 
-Notice :If you open php_cpustat.php in brower, the output may seem in a mess because the it use LF for newline, not CRLF.
+php_cpustat.php don't support parameter in brower yet.You need to change the default output level instead.
+
+**Notice:** If you open php_cpustat.php in brower, the output may seem in a mess because the it use LF for newline, not CRLF.
+
+**Notice:** If you want to change the default output level, edit the file and change the value of **$inforlevel = 'a';**
+
+--------------------------------------------------------------------------------
 
 ###Bash
 
