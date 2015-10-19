@@ -18,8 +18,7 @@ switch ($inforlevel) {
     echopcpuall($timerange);
     break;
   default:
-    echo "Error. Unrecognized level option. For more information ,please check https://github.com/catscarlet/cpustat\n";
-    break;
+    exit("Error. Unrecognized level option. For more information ,please check https://github.com/catscarlet/cpustat\n");
 }
 
 function percentage($denominator, $numerator, $round)
