@@ -19,7 +19,7 @@ _（你可以跳过本段。这些只是我的抱怨）_
 所以，我决定写一个工具来满足自己的需求。
 
 注意 ：
-- 这个项目使用的'cat/proc/stat'收集CPU的使用信息，因为采用了正则表达式来收集stat的9列输出，所以只能用于Linux 2.6.24以后的版本。详情请参阅：[http://www.linuxhowtos.org/System/procstat.htm](http://www.linuxhowtos.org/System/procstat.htm)
+- 这个项目使用的'cat/proc/stat'收集CPU的使用信息，因为采用了正则表达式来收集stat的9列输出，所以只能用于Linux 2.6.24以后的版本。详情请参阅：[http://www.linuxhowtos.org/System/procstat.htm(英文)](http://www.linuxhowtos.org/System/procstat.htm)
 - 由于bash不支持浮点运算，所以只有整形输出。我不想用bc进行浮点计算，因为没有必要。
 
 ##安装
