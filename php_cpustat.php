@@ -39,8 +39,8 @@ function echopcpu($timerange)
         $diffstat[$cpuid] = subtractarray($procstat_t1[$cpuid], $procstat_t2[$cpuid]);
         $diffstat[$cpuid]['total'] = array_sum($procstat_t2[$cpuid]) - array_sum($procstat_t1[$cpuid]);
         $pcpu[$cpuid] = percentage(($diffstat[$cpuid]['total'] - $diffstat[$cpuid]['idle']), $diffstat[$cpuid]['total'], 2);
-        echo 'cpu'.$cpuid."\t".$pcpu[$cpuid].'%';
-        echo "\n";
+        $result = 'cpu'.$cpuid."\t".$pcpu[$cpuid].'%'."\n";
+        echo $result;
     }
 }
 
