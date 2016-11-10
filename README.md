@@ -1,11 +1,12 @@
 # cpustat
-##Overview
+
+## Overview
 
 _Click here for Chinese README.[中文文档](https://github.com/catscarlet/cpustat/blob/master/README_zh-cn.md)_
 
 A very simple CPU usage percentages monitor tools for Linux. Simply calculate and output CPU usage percentages in text. Two versions coding by Shell and PHP.
 
-###The reason why I made this
+### The reason why I made this
 
 _(You can skip this phase. This is just my complaint)_
 
@@ -20,20 +21,21 @@ Even though they are powerful tools, and maybe they have a mode to output a simp
 So I decided to write a tool to make myself satisfied.
 
 Note :
-- This project uses `cat /proc/stat` to collect information, using regex, so it only works with Linux 2.6.24 and newer version because there are 9 columns. See in:[http://www.linuxhowtos.org/System/procstat.htm](http://www.linuxhowtos.org/System/procstat.htm)
+
+- This project uses `cat /proc/stat` to collect information, using regex, so it only works with Linux 2.6.24 and newer version because there are 9 columns. See in:<http://www.linuxhowtos.org/System/procstat.htm>
 - Because Bash doesn't support floating calculation, so there is only integer %. I don't want to use `bc` to support floating calculation, because there is no need of such exact computation.
 
-##Install
+## Install
 
 Just copy files to your destination computer. Give bash_cpustat.sh execute permission if you need it.
 
-##Usage
+## Usage
 
-###PHP
+### PHP
 
 Run php_cpustat.php in php-cli, or open it in browser (need http service):
 
-####php-cli
+#### php-cli
 
 Simply run like this:
 
@@ -51,7 +53,7 @@ php php_cpustat.php a
 
 ![php php_cpustat.php level=-a](https://raw.githubusercontent.com/catscarlet/cpustat/master/snapshot/php_cpustat_a_a.png)
 
-####browser
+#### browser
 
 You can open php_cpustat.php in browser. Try to use curl easily:
 
@@ -71,7 +73,7 @@ php_cpustat.php don't support parameter in browser yet. You need to change the d
 
 --------------------------------------------------------------------------------
 
-###Bash
+### Bash
 
 Simply run like this (execute permission needed):
 
@@ -83,6 +85,6 @@ You can use **_-h_** for more information.
 
 ![bash_cpustat.sh](https://raw.githubusercontent.com/catscarlet/cpustat/master/snapshot/bash_cpustat.png)
 
-##Contributor
+## Contributor
 
 Thank [梅桐天土小星星](http://weibo.com/p/1005051861229632) for fixing grammatical errors of README.
