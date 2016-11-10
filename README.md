@@ -87,4 +87,4 @@ You can use **_-h_** for more information.
 
 ## Contributor
 
-Thank [梅桐天土小星星](http://weibo.com/p/1005051861229632) for fixing grammatical errors of README.
+Thank [小星星](http://weibo.com/p/1005051861229632) for fixing grammatical errors of README.
