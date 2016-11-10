@@ -1,10 +1,10 @@
-#cpustat
+# cpustat
 
-##概述
+## 概述
 
 一个用于linux下，非常简单的CPU使用率监控工具。一条命令，无界面，无日志。做到**简单部署，简单执行，简单输出**。共php和bash(shell)两个版本。
 
-###为什么要做这个
+### 为什么要做这个
 
 _（你可以跳过本段。这些只是我的抱怨）_
 
@@ -19,20 +19,21 @@ _（你可以跳过本段。这些只是我的抱怨）_
 所以，我决定写一个工具来满足自己的需求。
 
 注意 ：
+
 - 这个项目使用的'cat/proc/stat'收集CPU的使用信息，因为采用了正则表达式来收集stat的9列输出，所以只能用于Linux 2.6.24以后的版本。详情请参阅：[http://www.linuxhowtos.org/System/procstat.htm(英文)](http://www.linuxhowtos.org/System/procstat.htm)
 - 由于bash不支持浮点运算，所以只有整形输出。我不想用bc进行浮点计算，因为没有必要。
 
-##安装
+## 安装
 
 只需将文件复制到目标计算机即可。如果你需要使用shell版本，给bash_cpustat.sh加上执行权限。
 
-##用法
+## 用法
 
-###PHP
+### PHP
 
 在php-cli下使用php php_cpustat.php，或者在浏览器中直接打开：
 
-####php-cli
+#### php-cli
 
 直接执行：
 
@@ -50,7 +51,7 @@ php php_cpustat.php a
 
 ![php php_cpustat.php level=-a](https://raw.githubusercontent.com/catscarlet/cpustat/master/snapshot/php_cpustat_a_a.png)
 
-####浏览器
+#### 浏览器
 
 直接在浏览器中打开此文件，你可以用curl简单测试：
 
@@ -68,7 +69,7 @@ php_cpustat.php目前不支持浏览器参数，你需要修改默认输出级�
 
 **注意：** 如果你想改变默认输出级别，编辑文件，修改值 **$inforlevel = 'a';**
 
-###Bash
+### Bash
 
 直接在shell下执行即可（需要执行权限）
 
@@ -80,6 +81,6 @@ php_cpustat.php目前不支持浏览器参数，你需要修改默认输出级�
 
 ![bash_cpustat.sh](https://raw.githubusercontent.com/catscarlet/cpustat/master/snapshot/bash_cpustat.png)
 
-##贡献者
+## 贡献者
 
 感谢[梅桐天土小星星](http://weibo.com/p/1005051861229632)修复readme的语法错误。
